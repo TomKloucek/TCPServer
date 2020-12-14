@@ -21,7 +21,7 @@ namespace TCPServer
                 sWriter.WriteLine(key);
             }
             history.Add("help");
-
+            sWriter.WriteLine();
         }
     }
 }

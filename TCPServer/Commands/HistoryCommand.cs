@@ -20,7 +20,7 @@ namespace TCPServer
                 sWriter.Write($"{zaznam} ");
             }
             history.Add("history");
-
+            sWriter.WriteLine();
         }
     }
 }

@@ -30,7 +30,8 @@ namespace TCPServer
                     cons_count++;
                 }
             }
-            sWriter.Write($"Pocet samohlasek: {vowel_count}");
+            sWriter.WriteLine($"Pocet samohlasek: {vowel_count}, Pocet souhlasek: {cons_count}");
+
         }
     }
 }

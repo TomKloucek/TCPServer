@@ -53,14 +53,16 @@ namespace TCPServer
             Boolean bClientConnected = true;
             String sData = null;
 
-
+            sWriter.Flush();
+            sWriter.WriteLine("Zadej nick:");
+            sWriter.Flush();
             string nick = sReader.ReadLine();
             while (bClientConnected)
             {
-                sWriter.WriteLine($"{nick}>");
-                sWriter.WriteLine($"{nick}>");
-                sData = sReader.ReadLine().Trim().ToLower();
                 sWriter.Flush();
+                sWriter.Write($"{nick}>");
+                sWriter.Flush();
+                sData = sReader.ReadLine().Trim().ToLower();        
                 string[] prikaz = new string[2];
                 prikaz[0] = sData.Split(" ")[0];
                 if (sData.Split(" ").Length == 1)
