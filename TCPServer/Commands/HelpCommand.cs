@@ -13,7 +13,7 @@ namespace TCPServer
         {
             
         }
-        public void Execute(TcpClient client,StreamWriter sWriter, List<string> history, string value)
+        public void Execute(TcpClient client,StreamWriter sWriter, StreamReader sReader ,List<string> history, string value)
         {
             commands = CommandSingleton.Instance;
             foreach (var key in commands.Keys)

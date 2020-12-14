@@ -17,6 +17,7 @@ namespace TCPServer
             commands.Add("time", new TimeCommand());
             commands.Add("history", new HistoryCommand());
             commands.Add("vowel", new VowelsCommand());
+            commands.Add("game", new GameCommand());
         }
 
         private static CommandSingleton instance = null;

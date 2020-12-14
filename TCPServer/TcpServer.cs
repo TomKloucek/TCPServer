@@ -29,13 +29,14 @@ namespace TCPServer
         {
             while (_isRunning)
             {
-                // wait for client connection
                 TcpClient newClient = _server.AcceptTcpClient();
+                if (newClient != null)
+                {
+                    Thread t = new Thread(new ParameterizedThreadStart(HandleClient));
+                    t.Start(newClient);
+                }
 
-                // client found.
-                // create a thread to handle communication
-                Thread t = new Thread(new ParameterizedThreadStart(HandleClient));
-                t.Start(newClient);
+
             }
         }
 
@@ -75,7 +76,7 @@ namespace TCPServer
                 }
                 if (commands.ContainsKey(prikaz[0]))
                 {
-                    commands[prikaz[0]].Execute(client,sWriter,history,prikaz[1]);
+                    commands[prikaz[0]].Execute(client,sWriter, sReader,history,prikaz[1]);
                 }
                 else
                 {
