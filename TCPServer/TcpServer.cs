@@ -68,7 +68,7 @@ namespace TCPServer
                 prikaz[0] = sData.Split(" ")[0];
                 if (sData.Split(" ").Length == 1)
                 {
-                    prikaz[1] = " ";
+                    prikaz[1] = "";
                 }
                 else
                 {

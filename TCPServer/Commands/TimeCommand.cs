@@ -8,6 +8,7 @@ namespace TCPServer
 {
     class TimeCommand : ICommand
     {
+        private string popis = "time : vypise aktualni datum";
         private DateTime localDate = DateTime.Now;
         public TimeCommand()
         {
@@ -17,6 +18,11 @@ namespace TCPServer
         {
             sWriter.WriteLine(localDate);
             history.Add("time");
+        }
+
+        public string getPopis()
+        {
+            return popis;
         }
     }
 }

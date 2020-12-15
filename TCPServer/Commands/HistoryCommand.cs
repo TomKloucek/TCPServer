@@ -8,6 +8,7 @@ namespace TCPServer
 {
     class HistoryCommand : ICommand
     {
+        private string popis = "history : vypise vasi historii prikazu";
         private List<string> history = new List<string>();
         public HistoryCommand()
         {
@@ -21,6 +22,11 @@ namespace TCPServer
             }
             history.Add("history");
             sWriter.WriteLine();
+        }
+
+        public string getPopis()
+        {
+            return popis;
         }
     }
 }

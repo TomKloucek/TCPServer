@@ -8,7 +8,7 @@ namespace TCPServer
 {
     class ExitCommand : ICommand
     {
-
+        private string popis = "exit : odpoji uzivatele od serveru";
          public ExitCommand()
         {
         }
@@ -16,8 +16,11 @@ namespace TCPServer
         {
             client.Close();
             history.Add("exit");
-
         }
 
+        public string getPopis()
+        {
+            return popis;
+        }
     }
 }

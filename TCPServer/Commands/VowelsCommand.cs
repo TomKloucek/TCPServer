@@ -8,6 +8,7 @@ namespace TCPServer
 {
     class VowelsCommand : ICommand
     {
+        private string popis = "wowels [string] : u zadaneho slova urci pocet souhlasek a samohlasek";
         public VowelsCommand()
         {
 
@@ -31,7 +32,12 @@ namespace TCPServer
                 }
             }
             sWriter.WriteLine($"Pocet samohlasek: {vowel_count}, Pocet souhlasek: {cons_count}");
+            history.Add("vowels");
+        }
 
+        public string getPopis()
+        {
+            return popis;
         }
     }
 }

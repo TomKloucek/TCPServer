@@ -9,6 +9,7 @@ namespace TCPServer
     class HelpCommand : ICommand
     {
         private Dictionary<string, ICommand> commands;
+        private string popis = "help : ukaze vsechny commandy i s popisy";
         public HelpCommand()
         {
             
@@ -18,10 +19,15 @@ namespace TCPServer
             commands = CommandSingleton.Instance;
             foreach (var key in commands.Keys)
             {
-                sWriter.WriteLine(key);
+                sWriter.WriteLine($"{key} - {commands[key].getPopis()}");
             }
             history.Add("help");
             sWriter.WriteLine();
+        }
+
+        public string getPopis()
+        {
+           return popis;
         }
     }
 }
