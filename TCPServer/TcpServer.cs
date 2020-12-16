@@ -60,29 +60,37 @@ namespace TCPServer
             string nick = sReader.ReadLine();
             while (bClientConnected)
             {
-                sWriter.Flush();
-                sWriter.Write($"{nick}>");
-                sWriter.Flush();
-                sData = sReader.ReadLine().Trim().ToLower();        
-                string[] prikaz = new string[2];
-                prikaz[0] = sData.Split(" ")[0];
-                if (sData.Split(" ").Length == 1)
+                try
                 {
-                    prikaz[1] = "";
+                    sWriter.Flush();
+                    sWriter.Write($"{nick}>");
+                    sWriter.Flush();
+                    sData = sReader.ReadLine().Trim().ToLower();
+                    string[] prikaz = new string[2];
+                    prikaz[0] = sData.Split(" ")[0];
+                    if (sData.Split(" ").Length == 1)
+                    {
+                        prikaz[1] = "";
+                    }
+                    else
+                    {
+                        prikaz[1] = sData.Split(" ")[1];
+                    }
+                    if (commands.ContainsKey(prikaz[0]))
+                    {
+                        commands[prikaz[0]].Execute(client, sWriter, sReader, history, prikaz[1]);
+                    }
+                    else
+                    {
+                        sWriter.WriteLine("Unknown command:" + sData);
+                    }
+                    sWriter.Flush();
                 }
-                else
+                catch(IOException err)
                 {
-                    prikaz[1] = sData.Split(" ")[1];
+                    Console.WriteLine("Klient odpojen");
+                    break;
                 }
-                if (commands.ContainsKey(prikaz[0]))
-                {
-                    commands[prikaz[0]].Execute(client,sWriter, sReader,history,prikaz[1]);
-                }
-                else
-                {
-                    sWriter.WriteLine("Unknown command:"+sData);
-                }               
-                sWriter.Flush();
             }
         }
 
